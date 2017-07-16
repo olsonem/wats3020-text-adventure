@@ -1,8 +1,7 @@
 /* JS for WATS 3020 Text Adventure */
 let playerName = "";
-let choiceList = [];
 let enemyName = "";
-let cityName = "";
+let choiceList = [];
 let currentPage = null;
 
 ///////////////////////////////////////////////////
@@ -12,41 +11,35 @@ let currentPage = null;
 ////////////////////////////////////////////////////////////////////////////////
 
 // TODO: Prompt the user for their name. Store the name in the variable `playerName`.
- playerName = prompt ('Name your hero:')
- enemyName = prompt('Name the archenemy of your Hero:')
- cityName = prompt('What is the name of your city?')
+ playerName = prompt('Name an animal that flies?')
+ enemyName = prompt ('Name the archenemy of your flying animal:')
+
 
 // TODO: Create a function called `getCurrentPage()`. It should accept one
 // parameter, which is the `slug` for the current page. This function will fetch
 // the current page and return a page object using the `slug` value for a key.
+
 function getCurrentPage(slug){
-  currentPage = storyData[slug]  
+  currentPage = storyData[Slug];
   return currentPage;
 }
-
-
 // TODO: Create a function called `recordChoice()` that will accept a `slug`
 // parameter and add it to the `choiceList` Array (probably using `push()`).
-function recordChoice(slug){
+
+function recordChoice(slug) {
   choiceList.push(slug);
-  console.log('Added ${slug} to choiceList Array')
-  
+
 }
-
-
 
 // TODO: Create a function called `undoChoice()` that will remove the last
 // `slug` in the `choiceList` Array and then will return the last `slug` in the
 // `choiceList` Array.
-function undoChoice() {
-  choiceList.pop(); //remove the last ietm in the 'choiceList' Array
-  console.log('Returning to previous page.');
+
+
+function undoChoice(){
+  choiceList.pop();
   return choiceList[choiceList.length-1];
-  
-  
 }
-
-
 
 // TODO: Create a function called `changePage()` that accepts a parameter called
 // `slug` and which handles "turning the page" in three steps:
@@ -54,18 +47,14 @@ function undoChoice() {
 //     a parameter.
 //  2. It should set the `currentPage` value by calling the `getCurrentPage()`
 //     function (and give it the `slug` as a parameter).
-//  3. It should give the recordChoice() the paramater of "p1"
 //  3. It should invoke the `updatePage()` function (and give it the
 //     `currentPage` object as a parameter).
 function changePage(slug){
-  //record latest choice
   recordChoice(slug);
-  currentPage = getCurrentPage(slug);
-  recordChoice('p1');
+  currentPage = getCurrentPage(slug)
+  recordChoice('p1')
   updatePage(currentPage);
-    
 }
-
 
 
 ///////////////////////////////////////////////////
@@ -84,28 +73,24 @@ function changePage(slug){
 ////////////////////////////////////////////////////////////////////////////////
 
 var storyData = {
-    title: "The Hero and the Enemy",
+    title: "The ${playerName} and the ${enemyName}",
     p1: {
-        text: `You are a superhero named ${playerName}. You are flying high above the
-                countryside. You see  your secret lair off to the East , 
-                and the city of ${cityName} off to the West.  There seems to be smoke 
-                coming from the city.`,
+        text: `You are a crow named ${playerName}. You are flying high above the
+                countryside. You see a farm off to the West, and your home forest
+                off to the East.`,
         choices: [
             {
-                text: `Fly over ${cityName} to the West.`,
+                text: `Fly over the farm to the West.`,
                 link: 'p2'
             }, {
-                text: `Fly back home to your secret lair.`,
+                text: `Fly back home to your nest in the forest.`,
                 link: 'homeEnd'
             }
         ]
     },
     homeEnd : {
-        text: `You return home to your secret lair and
+        text: `You return home to your comfy roost in the forest canopy and
                 enjoy a hot cup of tea!
-                Spend the next five years coming to terms with deep and 
-                abiding guilt that you are, despite your good looks and lovely 
-                cape, not the hero this city deserves!
                 <br><br>
                 The End.`,
         choices: [
@@ -116,39 +101,38 @@ var storyData = {
         ]
     },
     p2 : {
-        text: `You fly over ${cityName} and see a dumpster fire near the capitol
-                building. There are no people around that you can see. The
-                dumpster seems to be filled with healthcare bills that actually insure 
-                citizens, but you are worried this might be a trap. Is ${enemyName} 
-                lurking somewhere you can't see?`,
+        text: `You fly over the Farm and see a piece of cheese lying on the
+                picnic table. There are no people around that you can see. The
+                cheese looks very tasty, but you are worried there might be a
+                person or, even worse, a CAT lurking somewhere you can't see.`,
         choices: [
             {
-                text: `Go for the fire extinguisher!`,
+                text: `Go for the cheese!`,
                 link: 'p3'
             }, {
-                text: `Decide it's not worth the risk and fly back to your secret lair.`,
+                text: `Decide it's not worth the risk and fly back to the forest.`,
                 link: 'homeEnd'
             }
         ]
     },
     p3 : {
-        text: `You swoop down and pull the fire extingisher from the wall. Just as you
-                grab hold of the fire extinguisher, ${enemyName} leaps onto the street
+        text: `You swoop down and pluck the cheese from the table. Just as you
+                grab hold of the cheese, the farmer's cat leaps onto the table
                 ahead of you!`,
         choices: [
             {
-                text: `Veer off to the left trying to avoid ${enemyName}.`,
+                text: `Veer off to the left trying to avoid the cat.`,
                 link: 'basketEnd'
             }, {
-                text: `Fly directly at ${enemyName}, full steam ahead!`,
+                text: `Fly directly at the cat, full steam ahead!`,
                 link: 'p4'
             }
         ]
     },
     basketEnd : {
-        text: `You fly directly into a jail cell, which slams shut behind you.
-                You are stuck until a new president is elected and order is restored to 
-                ${cityName}. But at least you'll have healthcare!
+        text: `You fly directly into a picnic basket, which slams shut behind you.
+                You are stuck until some kind human comes to open the basket.
+                But at least the cat didn't eat you!
                 <br><br>
                 The End`,
         choices: [
@@ -159,15 +143,14 @@ var storyData = {
         ]
     },
     p4 : {
-        text: `You zoom towards ${enemyName}, who is surprised by the direct approach
-                and leaps away from the dumpster. You pull up sharply and make it over the
-                dumpster spraying it with the fire extinguisher effectively saving the 
-                healthcare plans of the most vunerable citizens of ${cityName}. The sun is 
-                shining, the wind is beneath your wings, and you have a heart full of
-                love.`,
+        text: `You zoom towards the cat, who is surprised by the direct approach
+                and leaps off the table. You pull up sharply and make it over the
+                big oak tree to a safe cruising altitude. The sun is shining,
+                the wind is beneath your wings, and you have a beak full of
+                cheese.`,
         choices: [
             {
-                text: `Take your energy and momentum to tackle the next injustice.`,
+                text: `Find somewhere nice to eat your cheese.`,
                 link: 'p5'
             }
         ]
@@ -175,28 +158,24 @@ var storyData = {
     p5 : {
         text: `You find a secluded fence post in the middle of a large field
                 full of wildflowers. You decide this will be a wonderful place
-                to start an organic farm that will provide free meals and housing
-                to the disavantaged people of ${cityName}.
+                to have a snack.
                 <br><br>
-                Just as you settle down you see ${enemyName} strolling down the path
+                Just as you settle down you see Mr. Fox strolling down the path
                 towards your fence post.`,
         choices: [
             {
-                text: `Say, "Hello ${enemyName} I know we've had our differences, but
-                won't you join me in helping the people of ${cityName}?"`,
+                text: `Say, "Hello Mr. Fox! Join me for cheese."`,
                 link: 'shareCheese'
             }, {
-                text: `Keep a wary eye on ${enemyName}.`,
+                text: `Keep a wary eye on Mr. Fox.`,
                 link: 'p6'
             }
         ]
     },
     shareCheese : {
-        text: `You hop down to the ground and ${enemyName} helps you break ground 
-                on the new buildings for the organic farm. He is very grateful to 
-                you for moving past that nastiness aout the healthcare fire. 
-                He gives you his support in restoring enviromental protections, ensuring
-                the health and prosperity of the citizens of ${cityName}.
+        text: `You hop down to the ground and Mr. Fox helps you break the cheese
+                in half. He is very grateful to you for sharing your cheese, and
+                he gives you a lovely ribbon for your nest.
                 <br><br>
                 The End`,
         choices: [
@@ -207,13 +186,12 @@ var storyData = {
         ]
     },
     p6 : {
-        text: `${enemyName} approaches and says, "Hello ${playerName}! It's been so
+        text: `Mr. Fox approaches and says, "Hello ${playerName}! It's been so
                 long since we've seen each other. I've missed hearing your
-                bleeding-heart-liberal whining. Won't tell me again about how we should 
-                take care of eachother?`,
+                lovely singing voice. Won't you sing me a tune before I go?`,
         choices: [
             {
-                text: `Sing a song for ${enemyName}.`,
+                text: `Sing a song for Mr. Fox.`,
                 link: 'dropCheeseEnd'
             }, {
                 text: `Remain silent.`,
@@ -222,10 +200,9 @@ var storyData = {
         ]
     },
     dropCheeseEnd : {
-        text: `You open your mouth to sing a lovely song, and anger and rage come 
-                bubbling forth. ${enemyName} quickly calls you shrill and unwilling 
-                to work with him for the greater good of ${cityName} and his base supporters 
-                fall for his act and Fox News gobbles it up!
+        text: `You open your beak to sing a lovely song, and your cheese comes
+                tumbling out. Mr. Fox quickly snaps the cheese out of the air
+                as it falls and gobbles it up!
                 <br><br>
                 The End`,
         choices: [
@@ -236,18 +213,11 @@ var storyData = {
         ]
     },
     p7 : {
-        text: `You remain silent through all of ${enemyName}'s "flattery". In the end,
+        text: `You remain silent through all of Mr. Fox's flattery. In the end,
                 he knows you won't fall for his tricks, and he leaves you alone.
                 <br><br>
-                Finally able to relax in quiet, you recruit more motivated activists
-                building a universal healthcare system, a strong education system, and 
-                pass legislation ensuring safety nets are in place to support all the 
-                citizens of ${cityName}. Peace and prosperty win the day. What follows
-                is the development of the most artistically and technologically advanced 
-                city the planet has ever seen. ${cityName} becomes the model of governance
-                for all other cities, and you are eventually rendered obsolete. But that's    
-                okay because ${cityName} has repaired the social security system, and you
-                are able to comfortably retire.
+                Finally able to relax in quiet, you enjoy your well-earned
+                cheese.
                 <br><br>
                 The End`,
         choices: [
