@@ -5,18 +5,12 @@ let enemyName = "";
 let cityName = "";
 let currentPage = null;
 
-///////////////////////////////////////////////////
-//////// TODOs ///////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-// Fill in the blanks below to complete each TODO task.                       //
-////////////////////////////////////////////////////////////////////////////////
-
-// TODO: Prompt the user for their name. Store the name in the variable `playerName`.
+// Prompts the user for infromation. Store vairables.
  playerName = prompt ('Name your hero:')
  enemyName = prompt('Name the archenemy of your Hero:')
  cityName = prompt('What is the name of your city?')
 
-// TODO: Create a function called `getCurrentPage()`. It should accept one
+// Creates a function called `getCurrentPage()`. It should accept one
 // parameter, which is the `slug` for the current page. This function will fetch
 // the current page and return a page object using the `slug` value for a key.
 function getCurrentPage(slug){
@@ -25,7 +19,7 @@ function getCurrentPage(slug){
 }
 
 
-// TODO: Create a function called `recordChoice()` that will accept a `slug`
+// Creates a function called `recordChoice()` that will accept a `slug`
 // parameter and add it to the `choiceList` Array (probably using `push()`).
 function recordChoice(slug){
   choiceList.push(slug);
@@ -35,12 +29,14 @@ function recordChoice(slug){
 
 
 
-// TODO: Create a function called `undoChoice()` that will remove the last
+// Creates a function called `undoChoice()` that will remove the last
 // `slug` in the `choiceList` Array and then will return the last `slug` in the
 // `choiceList` Array.
 function undoChoice() {
   choiceList.pop(); //remove the last ietm in the 'choiceList' Array
   console.log('Returning to previous page.');
+  choiceList(slug);
+  choiceList ('p1')
   return choiceList[choiceList.length-1];
   
   
@@ -48,13 +44,13 @@ function undoChoice() {
 
 
 
-// TODO: Create a function called `changePage()` that accepts a parameter called
+//  Creates a function called `changePage()` that accepts a parameter called
 // `slug` and which handles "turning the page" in three steps:
 //  1. It should call the `recordChoice()` function (and give it the `slug` as
 //     a parameter.
 //  2. It should set the `currentPage` value by calling the `getCurrentPage()`
 //     function (and give it the `slug` as a parameter).
-//  3. It should give the recordChoice() the paramater of "p1"
+//  4. It should give the recordChoice() the paramater of "p1"
 //  3. It should invoke the `updatePage()` function (and give it the
 //     `currentPage` object as a parameter).
 function changePage(slug){
