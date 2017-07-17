@@ -35,8 +35,6 @@ function recordChoice(slug){
 function undoChoice() {
   choiceList.pop(); //remove the last ietm in the 'choiceList' Array
   console.log('Returning to previous page.');
-  choiceList(slug);
-  choiceList ('p1')
   return choiceList[choiceList.length-1];
   
   
