@@ -299,4 +299,5 @@ undo.addEventListener('click', function(e){
 
 currentPage = storyData.p1;
 updatePage(currentPage);
+recordChoice('p1')
 
